@@ -16,3 +16,6 @@ make -j8
 
 - 编译生成的文件在worksoace/bin
 
+## 运行
+进入worksoace/bin执行可执行文件
+
