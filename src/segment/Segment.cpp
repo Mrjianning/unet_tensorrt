@@ -487,6 +487,26 @@ void Segmenter::postprocessOutput(const cv::Mat& outputMask, const std::string& 
             throw std::runtime_error("保存二值掩码失败: " + outputPath);
         }
         std::cout << "[后处理] 保存二值掩码到: " << outputPath << std::endl;
+
+        // 4. 调整掩码大小到原图大小
+        cv::Size originalSize(1014, 370);  // 原图大小
+        cv::Mat resizedMask;
+        cv::resize(binaryMask, resizedMask, originalSize, 0, 0, cv::INTER_NEAREST);  // 使用最近邻插值保持二值特性
+
+        // 5. 保存调整大小后的掩码
+        std::string resizedOutputPath = outputPath;  // 新文件的路径
+        size_t lastDot = resizedOutputPath.find_last_of(".");  // 找到文件扩展名的位置
+        if (lastDot != std::string::npos) {
+            resizedOutputPath.insert(lastDot, "_resized");
+        } else {
+            resizedOutputPath += "_resized";
+        }
+
+        if (!cv::imwrite(resizedOutputPath, resizedMask)) {
+            throw std::runtime_error("保存调整大小后的二值掩码失败: " + resizedOutputPath);
+        }
+        std::cout << "[后处理] 保存调整大小后的二值掩码到: " << resizedOutputPath << std::endl;
+
     }
     
 }

@@ -4,9 +4,9 @@ project(SegmentationModule LANGUAGES CXX CUDA)
 add_compile_options(-w)
 
 # 设置 CUDA 和 TensorRT 路径
-set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda-11")
-set(TENSORRT_ROOT "/opt/TensorRT-8.5.2.2")
-set(OpenCV_DIR   "/opt/opencv4.8.0_cuda11.4")
+set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda-12.0")
+set(TENSORRT_ROOT "/opt/TensorRT-8.6.1.6")
+set(OpenCV_DIR   "/opt/opencv_4.8.0")
 
 # 编译选项
 set(CMAKE_CXX_STANDARD 17)
